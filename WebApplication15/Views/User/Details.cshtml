@@ -1,0 +1,156 @@
+﻿@model WebApplication15.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecondName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IssuedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IssuedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportSeries)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassportSeries)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassportNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IssueDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IssueDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassportId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassportId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityOfResidence)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityOfResidence)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressOfResidence)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddressOfResidence)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HomePhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HomePhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MobilePhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MobilePhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nationality)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DisabilityGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DisabilityGroup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pensioner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pensioner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyIncome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyIncome)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
