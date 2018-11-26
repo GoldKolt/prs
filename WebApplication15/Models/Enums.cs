@@ -33,4 +33,9 @@ namespace WebApplication15.Models
     {
         None = 0, First = 1, Second = 2, Third = 3
     }
+
+    public enum Currency
+    {
+        BYN = 0, USD = 1
+    }
 }

@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20181125230742_Deposit.cs" />
+    <Compile Remove="Migrations\20181125230742_Deposit.Designer.cs" />
+    <Compile Remove="Migrations\20181125230935_Deposit.cs" />
+    <Compile Remove="Migrations\20181125230935_Deposit.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />

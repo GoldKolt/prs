@@ -32,6 +32,7 @@ namespace WebApplication15
             MapperConfiguration mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new UserMappingProfile());
+                mc.AddProfile(new DepositMappingProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
