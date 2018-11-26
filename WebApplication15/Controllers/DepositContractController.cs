@@ -193,28 +193,29 @@ namespace WebApplication15.Controllers
         {
             try
             {
-                IEnumerable<DepositContract> contracts = await _context.DepositContracts
+                DepositContract contract = await _context.DepositContracts
                     .Include(c => c.Deposit)
                     .Where(c => c.EndDate.CompareTo(DateTime.Today) > 0 && c.Deposit.IsRevocable &&
                                 c.BeginDate.AddMonths(DateTime.Today.Month - c.BeginDate.Month).CompareTo(DateTime.Today) == 0)
-                    .ToListAsync();
-                Account cashRegisterAccount = await _context.Accounts.FirstAsync(a => a.Name == "cash");
-                foreach (var contract in contracts)
+                    .FirstOrDefaultAsync(c => c.Id == id);
+                if (contract == null)
                 {
-                    DepositAccount percentAccount = await _context.DepositAccounts.FirstAsync(da => da.DepositContractId == contract.Id && da.IsForPercents);
-                    percentAccount.Debet += percentAccount.Saldo;
-                    cashRegisterAccount.Credit += percentAccount.Saldo;
-                    cashRegisterAccount.Debet += percentAccount.Saldo;
-                    percentAccount.Saldo = 0;
-                    _context.Accounts.Update(percentAccount);
+                    return RedirectToAction("Details", new {id});
                 }
+                Account cashRegisterAccount = await _context.Accounts.FirstAsync(a => a.Name == "cash");                
+                DepositAccount percentAccount = await _context.DepositAccounts.FirstAsync(da => da.DepositContractId == contract.Id && da.IsForPercents);
+                percentAccount.Debet += percentAccount.Saldo;
+                cashRegisterAccount.Credit += percentAccount.Saldo;
+                cashRegisterAccount.Debet += percentAccount.Saldo;
+                percentAccount.Saldo = 0;
+                _context.Accounts.Update(percentAccount);
                 _context.Accounts.Update(cashRegisterAccount);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Error", "Home");
             }
         }
 
@@ -241,7 +242,7 @@ namespace WebApplication15.Controllers
             }
             catch
             {
-                return View("Error");
+                return RedirectToAction("Error", "Home");
             }
         }
 
@@ -249,29 +250,30 @@ namespace WebApplication15.Controllers
         {
             try
             {
-                IEnumerable<DepositContract> contracts = await _context.DepositContracts
+                DepositContract contract = await _context.DepositContracts
                     /*.Where(c => c.EndDate.CompareTo(DateTime.Today) == 0)*/
-                    .Include(c => c.Deposit).ToListAsync();
+                    .Include(c => c.Deposit).FirstOrDefaultAsync(c => c.Id == id);
+                if (contract == null)
+                {
+                    return RedirectToAction("Details", new { id });
+                }
                 Account frbAccount = await _context.Accounts.FirstAsync(a => a.Name == "frb");
                 Account cashRegisterAccount = await _context.Accounts.FirstAsync(a => a.Name == "cash");
-                foreach (var contract in contracts)
-                {
-                    IEnumerable<DepositAccount> accounts = await _context.DepositAccounts.Where(da => da.DepositContractId == contract.Id).ToListAsync();
-                    DepositAccount account = accounts.First(a => !a.IsForPercents);
-                    DepositAccount percentAccount = accounts.First(a => a.IsForPercents);
-                    percentAccount.Debet += percentAccount.Saldo;
-                    cashRegisterAccount.Credit += percentAccount.Saldo;
-                    cashRegisterAccount.Debet += percentAccount.Saldo;
-                    percentAccount.Saldo = 0;
-                    frbAccount.Saldo -= account.Credit;
-                    cashRegisterAccount.Credit += account.Credit;
-                    cashRegisterAccount.Debet += account.Credit;
-                    account.Debet += account.Credit;
-                    account.Credit += account.Credit;
-                    account.Saldo = 0;
-                    _context.Accounts.Update(account);
-                    _context.Accounts.Update(percentAccount);
-                }
+                IEnumerable<DepositAccount> accounts = await _context.DepositAccounts.Where(da => da.DepositContractId == contract.Id).ToListAsync();
+                DepositAccount account = accounts.First(a => !a.IsForPercents);
+                DepositAccount percentAccount = accounts.First(a => a.IsForPercents);
+                percentAccount.Debet += percentAccount.Saldo;
+                cashRegisterAccount.Credit += percentAccount.Saldo;
+                cashRegisterAccount.Debet += percentAccount.Saldo;
+                percentAccount.Saldo = 0;
+                frbAccount.Saldo -= account.Credit;
+                cashRegisterAccount.Credit += account.Credit;
+                cashRegisterAccount.Debet += account.Credit;
+                account.Debet += account.Credit;
+                account.Credit += account.Credit;
+                account.Saldo = 0;
+                _context.Accounts.Update(account);
+                _context.Accounts.Update(percentAccount);
                 _context.Accounts.Update(frbAccount);
                 _context.Accounts.Update(cashRegisterAccount);
                 await _context.SaveChangesAsync();
@@ -279,7 +281,7 @@ namespace WebApplication15.Controllers
             }
             catch
             {
-                return View("Error");
+                return RedirectToAction("Error", "Home");
             }
         }
 
