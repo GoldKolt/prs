@@ -60,6 +60,7 @@ namespace WebApplication15.ViewModels
 
         public string MobilePhone { get; set; }
 
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

@@ -90,6 +90,10 @@ namespace WebApplication15.Controllers
             {
                 // TODO: Add insert logic here
                 User user = _mapper.Map<User>(vm);
+                if (user.BirthDate.AddYears(14) > DateTime.Today || user.IssueDate > DateTime.Today || user.BirthDate >= user.IssueDate)
+                {
+                    return View("Error");
+                }
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -152,6 +156,10 @@ namespace WebApplication15.Controllers
             try
             {
                 User user = _mapper.Map<User>(vm);
+                if (user.BirthDate > DateTime.Today || user.IssueDate > DateTime.Today)
+                {
+                    return View("Error");
+                }
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
