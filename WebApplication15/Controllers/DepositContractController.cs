@@ -195,8 +195,7 @@ namespace WebApplication15.Controllers
             {
                 DepositContract contract = await _context.DepositContracts
                     .Include(c => c.Deposit)
-                    .Where(c => c.EndDate.CompareTo(DateTime.Today) > 0 && c.Deposit.IsRevocable &&
-                                c.BeginDate.AddMonths(DateTime.Today.Month - c.BeginDate.Month).CompareTo(DateTime.Today) == 0)
+                    .Where(c => c.EndDate.CompareTo(DateTime.Today) > 0 && c.Deposit.IsRevocable)
                     .FirstOrDefaultAsync(c => c.Id == id);
                 if (contract == null)
                 {

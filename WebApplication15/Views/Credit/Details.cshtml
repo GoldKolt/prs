@@ -1,0 +1,83 @@
+﻿@model WebApplication15.ViewModels.CreditContractViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CreditContractViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreditId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BeginDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt>
+            Balance
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreditAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Debt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Debt)
+        </dd>
+        <dt>
+            Percent debt
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreditPercent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Payment for month", "Pay", new { id = Model.Id })
+</div>

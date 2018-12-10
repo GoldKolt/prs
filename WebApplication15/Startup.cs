@@ -33,6 +33,7 @@ namespace WebApplication15
             {
                 mc.AddProfile(new UserMappingProfile());
                 mc.AddProfile(new DepositMappingProfile());
+                mc.AddProfile(new CreditMappingProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

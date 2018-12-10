@@ -1,0 +1,37 @@
+﻿@model WebApplication15.Models.Card
+
+@{
+    ViewData["Title"] = "See balance";
+}
+
+<h2>See Balance</h2>
+<div>
+    <h4>CreditAccount</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Card number
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        @if (ViewData.ContainsKey("Got"))
+        {
+            <dt>
+                @Html.Label("Withdrawed")
+            </dt>
+            <dd>
+                @ViewBag.Got
+            </dd>
+        }
+        <dt>
+            Balance
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Authorized" asp-route-id="@Model.Id">Back</a>
+</div>

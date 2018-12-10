@@ -1,0 +1,10 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Authorized";
+}
+
+<h2>Choose action</h2>
+
+<div><a asp-action="GetMoney" asp-route-id="@Model">Get Money</a></div>
+<div><a asp-action="SeeRest" asp-route-id="@Model">See Balance</a></div>
+

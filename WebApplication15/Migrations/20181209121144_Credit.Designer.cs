@@ -12,9 +12,10 @@ using WebApplication15.Models;
 namespace WebApplication15.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20181209121144_Credit")]
+    partial class Credit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,26 +51,6 @@ namespace WebApplication15.Migrations
                     b.ToTable("Accounts");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Account");
-                });
-
-            modelBuilder.Entity("WebApplication15.Models.Card", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AccountId");
-
-                    b.Property<decimal>("Balance");
-
-                    b.Property<string>("Number");
-
-                    b.Property<string>("Pin");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.ToTable("Cards");
                 });
 
             modelBuilder.Entity("WebApplication15.Models.Credit", b =>
@@ -254,13 +235,6 @@ namespace WebApplication15.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("WebApplication15.Models.Card", b =>
-                {
-                    b.HasOne("WebApplication15.Models.CreditAccount", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId");
-                });
-
             modelBuilder.Entity("WebApplication15.Models.CreditContract", b =>
                 {
                     b.HasOne("WebApplication15.Models.Credit", "Credit")
@@ -297,10 +271,10 @@ namespace WebApplication15.Migrations
 
             modelBuilder.Entity("WebApplication15.Models.DepositAccount", b =>
                 {
-                    b.HasOne("WebApplication15.Models.DepositContract", "DepositContract")
+                    b.HasOne("WebApplication15.Models.DepositContract")
                         .WithMany("Accounts")
                         .HasForeignKey("DepositContractId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

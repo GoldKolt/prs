@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20181125230742_Deposit.Designer.cs" />
     <Compile Remove="Migrations\20181125230935_Deposit.cs" />
     <Compile Remove="Migrations\20181125230935_Deposit.Designer.cs" />
+    <Compile Remove="Migrations\20181209112959_Credit.cs" />
+    <Compile Remove="Migrations\20181209112959_Credit.Designer.cs" />
+    <Compile Remove="Migrations\20181209113203_Credit.cs" />
+    <Compile Remove="Migrations\20181209113203_Credit.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
